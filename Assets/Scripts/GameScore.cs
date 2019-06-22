@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Globalization;
+using System.IO;
 
 public class GameScore : MonoBehaviour
 {
-
 	private static string scoresFilesPath = "Scores/best_scores";
+
+	public static void InitScoresFolders() 
+	{
+		Directory.CreateDirectory(@"Scores");
+	}
 
     public static void SaveScore(string time)
     {
@@ -17,7 +22,7 @@ public class GameScore : MonoBehaviour
         }
     }
 
-    public static string[] GetBestScores() {
+    public static string[] GetScores() {
     	return System.IO.File.ReadAllLines(@scoresFilesPath);;
     }
 
@@ -34,17 +39,26 @@ public class GameScore : MonoBehaviour
     public static float GetBestTime() 
     {
     	float bestTime, actualTime;
-    	string[] scores = System.IO.File.ReadAllLines(@scoresFilesPath);
     	int bestTimePos = 0;
-    	for (int i = 1; i < scores.Length; i++)
-    	{	
-    		bestTime = ConvertFloat(scores[bestTimePos]);
-    		actualTime = ConvertFloat(scores[i]);
-    		if (actualTime > bestTime) {
-    			bestTimePos = i;
-    		}
+    	try 
+    	{
+    		string[] scores = System.IO.File.ReadAllLines(@scoresFilesPath);
+	    	for (int i = 1; i < scores.Length; i++)
+	    	{	
+	    		bestTime = ConvertFloat(scores[bestTimePos]);
+	    		actualTime = ConvertFloat(scores[i]);
+	    		if (actualTime > bestTime) {
+	    			bestTimePos = i;
+	    		}
+	    	}
+
+	    	return ConvertFloat(scores[bestTimePos]); 
+    	} 
+    	catch 
+    	{
+    		return 0;
     	}
-    	return ConvertFloat(scores[bestTimePos]);
+    	
     }
 
     public static float ConvertFloat(string value) {

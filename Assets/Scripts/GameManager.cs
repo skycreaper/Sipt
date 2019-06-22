@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour{
     }
     // Start is called before the first frame update
     void Start(){
+        GameScore.InitScoresFolders();
         var floorHeight = floor.transform.localScale.y;
         var pos = floor.transform.position;
         pos.x = 0;
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour{
         spawner.active = false;
         Time.timeScale = 0;
         continueText.text = "Presione la tecla ENTER para empezar!";
-        bestTime = PlayerPrefs.GetFloat("MEJORTIEMPO");
+        bestTime = GameScore.GetBestTime();;
     }
     // Update is called once per frame
     void Update(){
@@ -68,26 +69,14 @@ public class GameManager : MonoBehaviour{
         gameStarted = false;
         continueText.text = "Presione la tecla ENTER para reiniciar!";
 
-        // Mejores tiempos
+        // Manejo de tiempos
         GameScore.SaveScore(timeElapsed.ToString());
-        GameScore.GetBestScores();
-        string averageTime = FormatTime(GameScore.GetAverageTime());
-        Debug.Log("Tiempo promedio: "+averageTime);
-
-        // PlayerPrefs.SetFloat("BestTime", GameScore.GetBestTime());
-        // Debug.Log("Mejor tiempo: "+GameScore.GetBestTime());
         bestTime = GameScore.GetBestTime();
-        if(timeElapsed > bestTime) {
-            // bestTime = timeElapsed;
-            // PlayerPrefs.SetFloat("BestTime", bestTime);
+        
+        // bestTime = timeElapsed > bestTime || bestTime == 0;
+        if(timeElapsed >= bestTime) {
             beatBestTime = true;
         }
-        
-        // if(timeElapsed > bestTime){
-        //     bestTime = timeElapsed;
-        //     PlayerPrefs.SetFloat("MEJORTIEMPO", bestTime);
-        //     beatBestTime = true;
-        // }
     }
     void ResetGame(){
         spawner.active = true;
@@ -100,7 +89,8 @@ public class GameManager : MonoBehaviour{
         timeElapsed = 0;
         beatBestTime = false;
     }
-    string FormatTime(float value){
+
+    public static string FormatTime(float value){
         TimeSpan t = TimeSpan.FromSeconds(value);
         return string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
     }
