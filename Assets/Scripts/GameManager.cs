@@ -73,28 +73,36 @@ public class GameManager : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
             scoreText.text = "TIEMPO: " + FormatTime(timeElapsed);
-            if (timeElapsed > 5){
-                spawner.active = false;
-                spawner.activeBus = true;
-                blinkTime++;
-                if (blinkTime % 40 == 0){
-                    blink = !blink;
-                }
-                busPrefab.GetComponent<Rigidbody2D>().velocity.Set(-10, 0);
-                if (pressKey < 14){
-                    continueText.text = "Ya viene el bus presiona varias veces C para tomarlo";
-                    continueText.canvasRenderer.SetAlpha(blink ? 0 : 1);
-                }
-                else{
-                    continueText.canvasRenderer.SetAlpha(0);
-                    won.text = " ¡¡ Enhorabuena lo lograste !!";
-                    won.canvasRenderer.SetAlpha(1);
-                    Time.timeScale = 0;
-                    SceneManager.LoadScene("Menu");
-                }
-                if (Input.GetKeyDown(KeyCode.C)){
-                    pressKey += 1;
-                }
+            ManageTime();
+        }
+    }
+    void ManageTime()
+    {
+        if (timeElapsed > 30)
+        {
+            spawner.active = false;
+            spawner.activeBus = true;
+            blinkTime++;
+            if (blinkTime % 40 == 0)
+            {
+                blink = !blink;
+            }
+            busPrefab.GetComponent<Rigidbody2D>().velocity.Set(-10, 0);
+            if (pressKey < 14)
+            {
+                continueText.text = "Ya viene el bus presiona varias veces C para tomarlo";
+                continueText.canvasRenderer.SetAlpha(blink ? 0 : 1);
+            }
+            else
+            {
+                continueText.canvasRenderer.SetAlpha(0);
+                won.text = " ¡¡ Enhorabuena lo lograste !!";
+                won.canvasRenderer.SetAlpha(1);
+                Time.timeScale = 0;
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                pressKey += 1;
             }
         }
     }
