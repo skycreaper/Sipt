@@ -9,16 +9,29 @@ public class DinamicList : MonoBehaviour
 	public ScrollRect scrollView;
 	public GameObject scrollContent;
 	public GameObject scrollItemPrefab;
+	public Text averageTime;
 
     // Start is called before the first frame update
     void Start()
     {
     	string[] items = GameScore.GetScores();
-    	for(int i = 0; i < 5; i++) 
-    	{
-    		generateItem((i+1)+". "+GameManager.FormatTime(GameScore.ConvertFloat(items[i])));
+    	if (items.Length > 0) {
+    		for(int i = 0; i < items.Length; i++) 
+		    	{
+		    		generateItem((i+1)+". "+GameManager.FormatTime(GameScore.ConvertFloat(items[i])));
+		    		if (i == 5) {
+		    			break;
+		    		}
+		    	}
+    		scrollView.verticalNormalizedPosition = 1;	
+    		averageTime.text = GameManager.FormatTime(GameScore.GetAverageTime());
+    		// averageTime.text = "algo";
+    		// Debug.Log(GameManager.FormatTime(GameScore.GetAverageTime()));
+    	} else {
+    		generateItem("No existen puntuaciones registradas");
+    		averageTime.text = "";
     	}
-    	scrollView.verticalNormalizedPosition = 1;
+    	
     }
 
     // Update is called once per frame
