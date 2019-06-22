@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 	public GameObject [] prefabs;
-	public float delay = 2.0f; //Delay de 2 segundos
+	public float delay = 3.0f; //Delay de 2 segundos
 	public bool active = true; //para saber si el spawner esta activo
 	public Vector2 delayRange = new Vector2(1, 2);
 	

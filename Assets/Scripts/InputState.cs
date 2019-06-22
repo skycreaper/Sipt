@@ -15,7 +15,7 @@ public class InputState : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
-        actionButton = Input.anyKeyDown;
+        actionButton = Input.GetKeyDown(KeyCode.Space);
     }
     void FixedUpdate(){
         absVelX = System.Math.Abs(body2d.velocity.x);
