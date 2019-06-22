@@ -67,11 +67,27 @@ public class GameManager : MonoBehaviour{
         timeManager.ManipulateTime(0, 5.5f);
         gameStarted = false;
         continueText.text = "Presione la tecla ENTER para reiniciar!";
-        if(timeElapsed > bestTime){
-            bestTime = timeElapsed;
-            PlayerPrefs.SetFloat("MEJORTIEMPO", bestTime);
+
+        // Mejores tiempos
+        GameScore.SaveScore(timeElapsed.ToString());
+        GameScore.GetBestScores();
+        string averageTime = FormatTime(GameScore.GetAverageTime());
+        Debug.Log("Tiempo promedio: "+averageTime);
+
+        // PlayerPrefs.SetFloat("BestTime", GameScore.GetBestTime());
+        // Debug.Log("Mejor tiempo: "+GameScore.GetBestTime());
+        bestTime = GameScore.GetBestTime();
+        if(timeElapsed > bestTime) {
+            // bestTime = timeElapsed;
+            // PlayerPrefs.SetFloat("BestTime", bestTime);
             beatBestTime = true;
         }
+        
+        // if(timeElapsed > bestTime){
+        //     bestTime = timeElapsed;
+        //     PlayerPrefs.SetFloat("MEJORTIEMPO", bestTime);
+        //     beatBestTime = true;
+        // }
     }
     void ResetGame(){
         spawner.active = true;
