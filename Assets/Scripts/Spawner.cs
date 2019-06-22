@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour {
 			var newTransform = transform;
 			busPrefab.GetComponent<Rigidbody2D>().velocity.Set(-10, 0);
 			GameObjectUtil.Instantiate(busPrefab, newTransform.position );
-			delay = 1000;
+			delay = 60;
 		}
 		StartCoroutine(BusGenerator() );
 	}

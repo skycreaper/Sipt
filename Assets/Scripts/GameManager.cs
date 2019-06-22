@@ -78,19 +78,18 @@ public class GameManager : MonoBehaviour
     }
     void ManageTime()
     {
-        if (timeElapsed > 30)
+        if (timeElapsed > 40)
         {
             spawner.active = false;
             spawner.activeBus = true;
             blinkTime++;
-            if (blinkTime % 40 == 0)
+            if (blinkTime % 10 == 0)
             {
                 blink = !blink;
             }
-            busPrefab.GetComponent<Rigidbody2D>().velocity.Set(-10, 0);
             if (pressKey < 14)
             {
-                continueText.text = "Ya viene el bus presiona varias veces C para tomarlo";
+                continueText.text = "<color=#FF0> Ya viene el bus presiona varias veces C para tomarlo </color>";
                 continueText.canvasRenderer.SetAlpha(blink ? 0 : 1);
             }
             else
@@ -98,7 +97,7 @@ public class GameManager : MonoBehaviour
                 continueText.canvasRenderer.SetAlpha(0);
                 won.text = " ¡¡ Enhorabuena lo lograste !!";
                 won.canvasRenderer.SetAlpha(1);
-                Time.timeScale = 0;
+                Time.timeScale = 0;                
             }
             if (Input.GetKeyDown(KeyCode.C))
             {
@@ -134,7 +133,6 @@ public class GameManager : MonoBehaviour
         spawner.active = true;
         player = GameObjectUtil.Instantiate(playerPrefab, new Vector3(0, (Screen.height / PixelPerfectCamera.pixelsToUnits) / 2 + 100, 0));
         bus = GameObjectUtil.Instantiate(busPrefab, new Vector3(0, -13, -2));
-        bus.GetComponent<Rigidbody2D>().velocity.Set(130, 0);
         var playerDestroyScript = player.GetComponent<DestroyOffscreen>();
         playerDestroyScript.DestroyCallback += OnPlayerKilled;
         gameStarted = true;
