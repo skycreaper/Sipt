@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameObjectUtil{
+
     private static Dictionary<RecycleGameObject, ObjectPool> pools = new Dictionary<RecycleGameObject, ObjectPool> ();
+
     public static GameObject Instantiate(GameObject prefab, Vector3 pos){
         GameObject instance = null;
         var recycledScript = prefab.GetComponent<RecycleGameObject>();
@@ -16,6 +18,7 @@ public class GameObjectUtil{
         }
         return instance;
     }
+
     public static void Destroy(GameObject gameObject){
         var recycleGameObject = gameObject.GetComponent<RecycleGameObject> ();
         if (recycleGameObject != null){
@@ -24,6 +27,7 @@ public class GameObjectUtil{
             GameObject.Destroy(gameObject);
         }
     }
+    
     private static ObjectPool GetObjectPool (RecycleGameObject reference){
         ObjectPool pool = null;
         if (pools.ContainsKey(reference) ){

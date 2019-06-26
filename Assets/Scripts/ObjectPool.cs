@@ -5,8 +5,12 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour{
     public RecycleGameObject prefab;
     private List<RecycleGameObject> poolInstances = new List<RecycleGameObject>();
+    
+    public Vector3 clonePosition;
+
     private RecycleGameObject CreateInstance(Vector3 pos){
         var clone = GameObject.Instantiate(prefab);
+        clonePosition = clone.transform.position;
         clone.transform.position = pos;
         clone.transform.parent = transform;
         poolInstances.Add(clone);

@@ -10,6 +10,8 @@ public class DestroyOffscreen : MonoBehaviour{
     private bool offscreen;
     private float offscreenX = 0;
     private Rigidbody2D body2d;
+
+    public int contadorFuera = 0;
     void Awake(){
         body2d = GetComponent<Rigidbody2D> ();
     }
@@ -38,6 +40,7 @@ public class DestroyOffscreen : MonoBehaviour{
     public void OnOutOfBounds(){
         offscreen = false;
         GameObjectUtil.Destroy (gameObject);
+        contadorFuera++;
         if (DestroyCallback != null){
             DestroyCallback();
         }

@@ -9,6 +9,8 @@ public interface IRecycle{
 }    
 public class RecycleGameObject : MonoBehaviour{
     private List<IRecycle> recycleComponents;
+
+    public int contadorDestruidos = 0;
     void Awake(){
         var components = GetComponents<MonoBehaviour>();
         recycleComponents = new List<IRecycle>();

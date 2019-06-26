@@ -9,17 +9,23 @@ public class Spawner : MonoBehaviour {
 	public bool active = true; //para saber si el spawner esta activo
 	public bool activeBus = true;
 	public Vector2 delayRange = new Vector2(1, 2);
-	
+
+	public int enemigosCreados = 0;
+
 	void Start () {
 		ResetDelay();
 		StartCoroutine(EnemyGenerator() ); // inicia una rutina aparte del loop del juego para generar el spawn de obstaculos
 		StartCoroutine(BusGenerator() );
 	}
+
 	IEnumerator EnemyGenerator(){
 		yield return new WaitForSeconds(delay);
 		if (active){
 			var newTransform = transform;
-			GameObjectUtil.Instantiate(prefabs[Random.Range(0, prefabs.Length)], newTransform.position);			
+			GameObjectUtil.Instantiate(prefabs[Random.Range(0, prefabs.Length)], newTransform.position);
+			enemigosCreados++;
+			Debug.Log("Enemigos creados: "+enemigosCreados);
+			Debug.Log("Enemigo creado...");
 			ResetDelay();
 		}
 		StartCoroutine(EnemyGenerator() );

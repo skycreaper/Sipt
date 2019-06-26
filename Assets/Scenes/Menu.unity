@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nativeResolution: {x: 1024, y: 768}
+  fixCamera: 0
 --- !u!114 &427931583
 MonoBehaviour:
   m_ObjectHideFlags: 0
