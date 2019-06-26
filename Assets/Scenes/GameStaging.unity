@@ -222,6 +222,49 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &350084925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 350084927}
+  - component: {fileID: 350084926}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &350084926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350084925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6e81dcc6c41064294ede0634e5253d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &350084927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350084925}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40, y: 0, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +276,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -249,19 +291,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfcc97d5e4004d94d9f6275490ef65be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nativeResolution: {x: 240, y: 160}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -428,19 +457,13 @@ MonoBehaviour:
   - {fileID: 6523742749006203565, guid: d037cf07f5d20ed419769d4f1ec5f0c9, type: 3}
   - {fileID: 6308870590229041581, guid: 5529066962da32e4bb8d53ca9c7b57db, type: 3}
   - {fileID: 1472260953604218, guid: bed5e50ee6132d7498903b2e6cee8cd3, type: 3}
-  - {fileID: 6046745449084376631, guid: 48158c4cd02b449408116bd5cf78e53c, type: 3}
-  - {fileID: 6308870590229041581, guid: 5529066962da32e4bb8d53ca9c7b57db, type: 3}
-  - {fileID: 1472260953604218, guid: bed5e50ee6132d7498903b2e6cee8cd3, type: 3}
-  - {fileID: 3511556220924027707, guid: 0b96747995c106c4f965536c1d6b1e97, type: 3}
-  - {fileID: 3511556220924027707, guid: 0b96747995c106c4f965536c1d6b1e97, type: 3}
-  - {fileID: 1815371754905395944, guid: 1009106a480785642b8d568d213d4fe5, type: 3}
-  - {fileID: 1815371754905395944, guid: 1009106a480785642b8d568d213d4fe5, type: 3}
   busPrefab: {fileID: 636816532428948828, guid: 423ef18f9a43ace4eb4f3aad419ad9a8,
     type: 3}
   delay: 2
   active: 1
   activeBus: 1
   delayRange: {x: 0.8, y: 2.5}
+  enemigosCreados: 0
 --- !u!4 &548324687
 Transform:
   m_ObjectHideFlags: 0
@@ -1080,7 +1103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069243608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -46, z: -1}
+  m_LocalPosition: {x: -0, y: -62, z: -1}
   m_LocalScale: {x: 64, y: 64, z: 0}
   m_Children:
   - {fileID: 548324687}

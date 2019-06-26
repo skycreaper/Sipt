@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     {
         floor = GameObject.Find("Foreground");
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
-        timeManager = GetComponent<TimeManager>();
+        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
     }
 
     // Start is called before the first frame update
@@ -77,11 +77,26 @@ public class GameManager : MonoBehaviour
             timeElapsed += Time.deltaTime;
             scoreText.text = "TIEMPO: " + FormatTime(timeElapsed);
             ManageTime();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("Menu");
+                DontDestroyOnLoad(GameObject.Find("TimeManager"));
+                //DontDestroyOnLoad(GameObject.Find("Foreground"));
+                foreach(var prefab in spawner.prefabs) {
+                    Debug.Log(prefab.name+"Object Pool");
+                    if(GameObject.Find(prefab.name+"Object Pool")!=null){
+                        Destroy(GameObject.Find(prefab.name+"Object Pool"));
+                    }
+                }
+                
+            }
         }
+        
     }
     void ManageTime()
     {
-        if (timeElapsed > 10)
+        if (timeElapsed > 20)
         {
             spawner.active = false;
             spawner.activeBus = true;

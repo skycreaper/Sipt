@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6709337827016128818}
   - component: {fileID: 7619865035737390455}
   - component: {fileID: 7814301471020935132}
-  - component: {fileID: 2610956999144700443}
   m_Layer: 0
   m_Name: Couch
   m_TagString: Untagged
@@ -144,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 34
+  contadorFuera: 0
 --- !u!114 &7814301471020935132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,15 +157,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: -95, y: 0}
---- !u!114 &2610956999144700443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6308870590229041581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 879333a05937f01439fef725e9696873, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

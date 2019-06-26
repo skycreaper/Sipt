@@ -13,5 +13,9 @@ public class TiledBackground : MonoBehaviour {
 		var newHeight = !scaleVertically ? 1 : Mathf.Ceil(Screen.height / (textureSize * PixelPerfectCamera.scale));
 		transform.localScale = new Vector3(newWidth * textureSize, newHeight * textureSize, 1);
 		GetComponent<Renderer>().material.mainTextureScale = new Vector3(newWidth, newHeight, 1);
+		if(GameObject.Find("Foreground") != null){
+			GameObject.Find("Foreground").GetComponent<Transform>().localPosition = new Vector3(0,-62-1);
+
+		}
 	}
 }

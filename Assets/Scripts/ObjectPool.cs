@@ -19,9 +19,11 @@ public class ObjectPool : MonoBehaviour{
     public RecycleGameObject NextObject(Vector3 pos){
         RecycleGameObject instance = null;
         foreach (var go in poolInstances){
-            if (go.gameObject.activeSelf != true){
-                instance = go;
-                instance.transform.position = pos;
+            if (go.gameObject != null) {
+                if (go.gameObject.activeSelf != true){
+                    instance = go;
+                    instance.transform.position = pos;
+                }
             }
         }
         if (instance == null){

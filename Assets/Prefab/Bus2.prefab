@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1351171639104532508}
   - component: {fileID: 5968659708422635599}
   - component: {fileID: 4142271278960357995}
-  - component: {fileID: 7214379325640707761}
   - component: {fileID: 3711562259678440427}
   m_Layer: 0
   m_Name: Bus2
@@ -165,18 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: -7, y: 0}
---- !u!114 &7214379325640707761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 636816532428948828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 879333a05937f01439fef725e9696873, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3711562259678440427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,3 +177,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 32
+  contadorFuera: 0

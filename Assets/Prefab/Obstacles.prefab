@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 114011886357596486}
   - component: {fileID: 2270429951588636594}
   - component: {fileID: 4864384663810185063}
-  - component: {fileID: 8763879711810058753}
   m_Layer: 0
   m_Name: Obstacles
   m_TagString: Untagged
@@ -158,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 32
+  contadorFuera: 0
 --- !u!114 &4864384663810185063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,23 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879333a05937f01439fef725e9696873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8763879711810058753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1472260953604218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad03e17c5a721584f897e0830ebe1b4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 8fdd220bcc03d1d4fb87dbeeaec3e9a9, type: 3}
-  - {fileID: 21300000, guid: 40e0e95052459964d88b905ef3f818ea, type: 3}
-  - {fileID: 21300000, guid: c26b16673dde66748a0543664be6d974, type: 3}
-  - {fileID: 21300000, guid: 527a316dbde17aa438d9557aed5549d9, type: 3}
-  - {fileID: 21300000, guid: ab8d1dac1e356084ead42751dfa9b704, type: 3}
-  - {fileID: 21300000, guid: cf97f8280364fdf43ac7f5a40ab5c292, type: 3}
-  colliderOffset: {x: 0, y: 0}
+  contadorDestruidos: 0
