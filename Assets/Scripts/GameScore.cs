@@ -23,7 +23,7 @@ public class GameScore : MonoBehaviour
     }
 
     public static string[] GetScores() {
-    	return System.IO.File.ReadAllLines(@scoresFilesPath);;
+		return System.IO.File.ReadAllLines(@scoresFilesPath);
     }
 
     public static float GetAverageTime() {
@@ -31,7 +31,7 @@ public class GameScore : MonoBehaviour
     	string[] scores = System.IO.File.ReadAllLines(@scoresFilesPath);
     	for (int i = 0; i < scores.Length; i++)
     	{
-    		acumulador += float.Parse(scores[i], CultureInfo.InvariantCulture.NumberFormat);
+    		acumulador += float.Parse(scores[i].Split('|')[0], CultureInfo.InvariantCulture.NumberFormat);
     	}
     	return acumulador/scores.Length;
     }
@@ -45,13 +45,13 @@ public class GameScore : MonoBehaviour
     		string[] scores = System.IO.File.ReadAllLines(@scoresFilesPath);
 	    	for (int i = 1; i < scores.Length; i++)
 	    	{	
-	    		bestTime = ConvertFloat(scores[bestTimePos]);  
-	    		actualTime = ConvertFloat(scores[i]); 
+                bestTime = ConvertFloat(scores[bestTimePos].Split('|')[0]);  
+	    		actualTime = ConvertFloat(scores[i].Split('|')[0]); 
 	    		if (actualTime > bestTime) {
 	    			bestTimePos = i;
 	    		}
 	    	}
-	    	return ConvertFloat(scores[bestTimePos]); 
+	    	return ConvertFloat(scores[bestTimePos].Split('|')[0]); 
     	} 
     	catch 
     	{

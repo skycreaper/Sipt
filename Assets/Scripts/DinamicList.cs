@@ -18,15 +18,14 @@ public class DinamicList : MonoBehaviour
     	if (items.Length > 0) {
     		for(int i = 0; i < items.Length; i++) 
 		    	{
-		    		generateItem((i+1)+". "+GameManager.FormatTime(GameScore.ConvertFloat(items[i])));
-		    		if (i == 5) {
-		    			break;
-		    		}
+					string time = items[i].Split('|')[0];
+					string obstaculos = items[i].Split('|')[1];
+		    		generateItem((i+1)+". Tiempo: "+GameManager.FormatTime(GameScore.ConvertFloat(time)) + ", Obstaculos: "+obstaculos);
+		    		if (i == 5) break;
 		    	}
     		scrollView.verticalNormalizedPosition = 1;	
     		averageTime.text = GameManager.FormatTime(GameScore.GetAverageTime());
-    		// averageTime.text = "algo";
-    		// Debug.Log(GameManager.FormatTime(GameScore.GetAverageTime()));
+
     	} else {
     		generateItem("No existen puntuaciones registradas");
     		averageTime.text = "";

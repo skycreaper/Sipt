@@ -25,59 +25,15 @@ public class GameManager : MonoBehaviour
     private bool beatBestTime;
     private int pressKey = 0;
 
-    private int contadorObstaculos = 0; // lleva una cuenta de todos los obstaculos superados por el player
+    // private int contadorObstaculos = 0; // lleva una cuenta de todos los obstaculos superados por el player
 
     void Awake()
     {
         floor = GameObject.Find("Foreground");
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
         timeManager = GetComponent<TimeManager>();
-
-        if (gameStarted && spawner != null)
-        {
-            // Debug.Log(GameObject.Find("TVObject Pool"));
-
-
-        }
     }
 
-    // Busca todos los obstaculos activos en el escenario
-    void findObstacles()
-    {
-        for (int i = 0; i < spawner.prefabs.Length; i++)
-        {
-            GameObject obstacle = GameObject.Find(spawner.prefabs[i].name + "Object Pool");
-            if (obstacle != null )
-            {
-                for (int j = 0; j < obstacle.GetComponentsInChildren<RecycleGameObject>().Length; j++)
-                {   
-                    var child = obstacle.GetComponentsInChildren<RecycleGameObject>()[j];
-                    // Debug.Log(child.transform);
-                    // Debug.Log("Find: "+GameObject.Find(child.name));
-                    // Debug.Log("activeSelf: "+GameObject.Find(child.name).activeInHierarchy);
-                    // if(!GameObject.Find(child.name).activeSelf) 
-                    // {
-                    //     Debug.Log("Acaba de desparecer....");
-                    // }
-                }
-                
-            }
-            
-            // if (obstacle != null)
-            // {
-            //     if (obstacle.GetComponentInChildren<RecycleGameObject>().isActiveAndEnabled)
-            //     {
-            //         // if (player.transform.position.x > obstacle.GetComponentInChildren<RecycleGameObject>().transform.position.x)
-            //         // {
-            //         //     contadorObstaculos++;
-            //         //     Debug.Log("Contador de obstaculos: " + contadorObstaculos);
-            //         // }
-            //     } else {
-            //         Debug.Log("Objeto destruido");
-            //     }
-            // }
-        }
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -96,10 +52,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (player != null) {
-        //     Debug.Log(player.transform.position);
-        // }
-
         if (!gameStarted && Time.timeScale == 0)
         {
             if (Input.GetKeyDown(KeyCode.Return))
@@ -124,7 +76,6 @@ public class GameManager : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
             scoreText.text = "TIEMPO: " + FormatTime(timeElapsed);
-            findObstacles();
             ManageTime();
         }
     }
@@ -147,7 +98,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 continueText.canvasRenderer.SetAlpha(0);
-                won.text = " ¡¡ Enhorabuena lo lograste !!";
+                won.text = " ¡¡ Felicidades lo lograste !!";
                 won.canvasRenderer.SetAlpha(1);
                 Time.timeScale = 0;
             }
@@ -170,14 +121,14 @@ public class GameManager : MonoBehaviour
         continueText.text = "Presione la tecla ENTER para reiniciar!";
 
         // Manejo de tiempos
-        GameScore.SaveScore(timeElapsed.ToString());
+        GameScore.SaveScore(timeElapsed.ToString()+"|"+spawner.enemigosCreados);
         bestTime = GameScore.GetBestTime();
 
-        // bestTime = timeElapsed > bestTime || bestTime == 0;
         if (timeElapsed >= bestTime)
         {
             beatBestTime = true;
         }
+        Debug.Log(spawner.enemigosCreados);
     }
     void ResetGame()
     {

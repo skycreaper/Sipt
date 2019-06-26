@@ -24,8 +24,7 @@ public class Spawner : MonoBehaviour {
 			var newTransform = transform;
 			GameObjectUtil.Instantiate(prefabs[Random.Range(0, prefabs.Length)], newTransform.position);
 			enemigosCreados++;
-			Debug.Log("Enemigos creados: "+enemigosCreados);
-			Debug.Log("Enemigo creado...");
+			// Debug.Log("Enemigos creados: "+enemigosCreados);
 			ResetDelay();
 		}
 		StartCoroutine(EnemyGenerator() );
