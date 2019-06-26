@@ -45,23 +45,21 @@ public class GameScore : MonoBehaviour
     		string[] scores = System.IO.File.ReadAllLines(@scoresFilesPath);
 	    	for (int i = 1; i < scores.Length; i++)
 	    	{	
-	    		bestTime = ConvertFloat(scores[bestTimePos]);
-	    		actualTime = ConvertFloat(scores[i]);
+	    		bestTime = ConvertFloat(scores[bestTimePos]);  
+	    		actualTime = ConvertFloat(scores[i]); 
 	    		if (actualTime > bestTime) {
 	    			bestTimePos = i;
 	    		}
 	    	}
-
 	    	return ConvertFloat(scores[bestTimePos]); 
     	} 
     	catch 
     	{
     		return 0;
     	}
-    	
     }
 
     public static float ConvertFloat(string value) {
-    	return float.Parse(value, CultureInfo.InvariantCulture.NumberFormat);
+    	return float.Parse(value, CultureInfo.CreateSpecificCulture("es-ES"));
     } 
 }
