@@ -208,5 +208,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e303a02abada14685f3647a57e4233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 32
+  offset: 2
   contadorFuera: 0

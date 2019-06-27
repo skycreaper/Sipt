@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7194776433253252907}
   - component: {fileID: 3965563423916732093}
   - component: {fileID: 6120958210700459677}
-  - component: {fileID: 766558248135665669}
   m_Layer: 0
   m_Name: TV
   m_TagString: Untagged
@@ -144,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 34
+  contadorFuera: 0
 --- !u!114 &6120958210700459677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,15 +157,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: -95, y: 0}
---- !u!114 &766558248135665669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6046745449084376631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 879333a05937f01439fef725e9696873, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
