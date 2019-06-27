@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public Text continueText;
     public Text scoreText;
     public Text won;
+    public Text hurryUp;
+    public Image hurry;
     private float timeElapsed = 0f;
     private float bestTime = 0f;
     private float blinkTime;
@@ -47,6 +49,8 @@ public class GameManager : MonoBehaviour
         spawner.activeBus = false;
         Time.timeScale = 0;
         continueText.text = "Presione la tecla ENTER para empezar!";
+        hurry.enabled = true;
+        hurryUp.text = "¡¡ Rapido alcanza al bus";
         bestTime = GameScore.GetBestTime(); ;
     }
     // Update is called once per frame
@@ -69,6 +73,7 @@ public class GameManager : MonoBehaviour
             }
             won.canvasRenderer.SetAlpha(0);
             continueText.canvasRenderer.SetAlpha(blink ? 0 : 1);
+            hurryUp.canvasRenderer.SetAlpha(blink ? 0 : 1);
             var textColor = beatBestTime ? "#FF0" : "#FFF";
             scoreText.text = "TIEMPO: " + FormatTime(timeElapsed) + "\n<color=" + textColor + ">MEJOR TIEMPO: " + FormatTime(bestTime) + "</color>";
         }
@@ -76,6 +81,7 @@ public class GameManager : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
             scoreText.text = "TIEMPO: " + FormatTime(timeElapsed);
+            hurry.enabled = false;            
             ManageTime();
 
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -155,7 +161,9 @@ public class GameManager : MonoBehaviour
         playerDestroyScript.DestroyCallback += OnPlayerKilled;
         gameStarted = true;
         won.text = "";
+        hurry.enabled = true;
         continueText.canvasRenderer.SetAlpha(0);
+        hurryUp.canvasRenderer.SetAlpha(0);
         timeElapsed = 0;
         beatBestTime = false;
     }
