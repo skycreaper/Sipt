@@ -36,6 +36,15 @@ public class GameScore : MonoBehaviour
     	return acumulador/scores.Length;
     }
 
+	public static int GetAverageObstacles() {
+		float acumulador = 0;
+		string[] lines = System.IO.File.ReadAllLines(@scoresFilesPath);
+		foreach (var line in lines) {
+			acumulador += int.Parse(line.Split('|')[1]);
+		}
+		return (int) acumulador/lines.Length;
+	}
+
     public static float GetBestTime() 
     {
     	float bestTime, actualTime;
@@ -60,6 +69,7 @@ public class GameScore : MonoBehaviour
     }
 
     public static float ConvertFloat(string value) {
-    	return float.Parse(value, CultureInfo.CreateSpecificCulture("es-ES"));
+    	// return float.Parse(value, CultureInfo.CreateSpecificCulture("es-ES"));
+		return float.Parse(value);
     } 
 }

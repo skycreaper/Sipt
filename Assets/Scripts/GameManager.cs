@@ -144,12 +144,12 @@ public class GameManager : MonoBehaviour
         // Manejo de tiempos
         GameScore.SaveScore(timeElapsed.ToString()+"|"+spawner.enemigosCreados);
         bestTime = GameScore.GetBestTime();
-
+        Debug.Log(bestTime);
         if (timeElapsed >= bestTime)
         {
             beatBestTime = true;
         }
-        Debug.Log(spawner.enemigosCreados);
+
     }
     void ResetGame()
     {
