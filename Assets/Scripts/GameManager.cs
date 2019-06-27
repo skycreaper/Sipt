@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
     }
     void ManageTime()
     {
-        if (timeElapsed > (30+randomTimeBus))
+        if (timeElapsed > (45+randomTimeBus))
         {
             spawner.active = false;
             spawner.activeBus = true;
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
             {
                 blink = !blink;
             }
-            if (pressKey < 14)
+            if (pressKey < 11)
             {
                 continueText.transform.position = new Vector3(0, 45, -2);
                 continueText.text = "<color=#FF0> Ya viene el bus presiona varias veces C para tomarlo </color>";

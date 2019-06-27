@@ -455,14 +455,20 @@ MonoBehaviour:
   prefabs:
   - {fileID: 6523742749006203565, guid: d037cf07f5d20ed419769d4f1ec5f0c9, type: 3}
   - {fileID: 3511556220924027707, guid: 0b96747995c106c4f965536c1d6b1e97, type: 3}
-  - {fileID: 6523742749006203565, guid: d037cf07f5d20ed419769d4f1ec5f0c9, type: 3}
+  - {fileID: 1815371754905395944, guid: 1009106a480785642b8d568d213d4fe5, type: 3}
+  - {fileID: 6308870590229041581, guid: 5529066962da32e4bb8d53ca9c7b57db, type: 3}
+  - {fileID: 6046745449084376631, guid: 48158c4cd02b449408116bd5cf78e53c, type: 3}
+  - {fileID: 1815371754905395944, guid: 1009106a480785642b8d568d213d4fe5, type: 3}
+  - {fileID: 1472260953604218, guid: bed5e50ee6132d7498903b2e6cee8cd3, type: 3}
+  - {fileID: 3511556220924027707, guid: 0b96747995c106c4f965536c1d6b1e97, type: 3}
+  - {fileID: 3511556220924027707, guid: 0b96747995c106c4f965536c1d6b1e97, type: 3}
   - {fileID: 6308870590229041581, guid: 5529066962da32e4bb8d53ca9c7b57db, type: 3}
   busPrefab: {fileID: 636816532428948828, guid: 423ef18f9a43ace4eb4f3aad419ad9a8,
     type: 3}
-  delay: 2
+  delay: 3
   active: 1
   activeBus: 1
-  delayRange: {x: 0.8, y: 2.5}
+  delayRange: {x: 0.85, y: 2.5}
   enemigosCreados: 0
 --- !u!4 &548324687
 Transform:
@@ -939,7 +945,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 99ff7cba41e95834e9daa3ab2ed7d55e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.45
   m_Pitch: 1
   Loop: 1
   Mute: 0
