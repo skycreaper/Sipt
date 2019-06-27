@@ -275,7 +275,7 @@ MonoBehaviour:
   scrollItemPrefab: {fileID: 1411229866617054310, guid: ecab75eb5c52a48b4aaa6e61899b3eb8,
     type: 3}
   averageTime: {fileID: 1826329731}
-  averageTimeOb: {fileID: 0}
+  averageTimeOb: {fileID: 323981024}
 --- !u!4 &190074377
 Transform:
   m_ObjectHideFlags: 0
