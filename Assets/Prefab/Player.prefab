@@ -185,6 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpSpeed: 240
   forwardSpeed: 20
+  jumpClip: {fileID: 8300000, guid: 873baeb86e154414985649be32cf68e8, type: 3}
 --- !u!114 &8738755166753987873
 MonoBehaviour:
   m_ObjectHideFlags: 0

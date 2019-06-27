@@ -692,6 +692,8 @@ MonoBehaviour:
     type: 3}
   busPrefab: {fileID: 6416211753557840670, guid: 69b05c9697c719f4ca5cb76e8729b467,
     type: 3}
+  gameOverClip: {fileID: 8300000, guid: cc78ca8014e88004ca904f4024a7ac97, type: 3}
+  gameMusicClip: {fileID: 8300000, guid: 99ff7cba41e95834e9daa3ab2ed7d55e, type: 3}
 --- !u!4 &830815562
 Transform:
   m_ObjectHideFlags: 0
@@ -937,7 +939,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 99ff7cba41e95834e9daa3ab2ed7d55e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0

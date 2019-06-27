@@ -28,13 +28,17 @@ public class GameManager : MonoBehaviour
     private bool beatBestTime;
     private int pressKey = 0;
 
-    // private int contadorObstaculos = 0; // lleva una cuenta de todos los obstaculos superados por el player
+    public AudioClip gameOverClip;
+    public AudioClip gameMusicClip;
+
+    private AudioSource backgroundMusic;
 
     void Awake()
     {
         floor = GameObject.Find("Foreground");
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
         timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        backgroundMusic = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -80,6 +84,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+
             timeElapsed += Time.deltaTime;
             scoreText.text = "TIEMPO: " + FormatTime(timeElapsed);
             hurry.enabled = false;            
@@ -114,6 +119,7 @@ public class GameManager : MonoBehaviour
             }
             if (pressKey < 14)
             {
+                continueText.transform.position = new Vector3(0, 40, -2);
                 continueText.text = "<color=#FF0> Ya viene el bus presiona varias veces C para tomarlo </color>";
                 continueText.canvasRenderer.SetAlpha(blink ? 0 : 1);
             }
@@ -157,13 +163,21 @@ public class GameManager : MonoBehaviour
         gameStarted = false;
         won.text = "";
         continueText.text = "Presione la tecla ENTER para reiniciar!";
-
         // Manejo de tiempos
         GameScore.SaveScore("D|"+timeElapsed.ToString()+"|"+spawner.enemigosCreados);
         bestTime = GameScore.GetBestTime();
+
+        // Música de GameOver
+        backgroundMusic.clip = gameOverClip;
+        backgroundMusic.Play();
     }
     void ResetGame()
     {
+        GameObject busClone = GameObject.Find("Bus2(Clone)");
+        if (busClone != null) {
+            GameObject.Destroy(GameObject.Find("Bus2(Clone)"));
+        }
+        
         spawner.activeBus = false;
         spawner.active = true;
         player = GameObjectUtil.Instantiate(playerPrefab, new Vector3(0, (Screen.height / PixelPerfectCamera.pixelsToUnits) / 2 + 100, 0));
@@ -177,6 +191,10 @@ public class GameManager : MonoBehaviour
         hurryUp.canvasRenderer.SetAlpha(0);
         timeElapsed = 0;
         beatBestTime = false;
+
+        // Música de GameOver
+        backgroundMusic.clip = gameMusicClip;
+        backgroundMusic.Play();
     }
 
     public static string FormatTime(float value)
