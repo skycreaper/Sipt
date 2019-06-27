@@ -27,11 +27,11 @@ public class GameScore : MonoBehaviour
     }
 
     public static float GetAverageTime() {
-    	float acumulador = 0;
+    	float acumulador = 0f;
     	string[] scores = System.IO.File.ReadAllLines(@scoresFilesPath);
     	for (int i = 0; i < scores.Length; i++)
     	{
-    		acumulador += float.Parse(scores[i].Split('|')[0], CultureInfo.InvariantCulture.NumberFormat);
+    		acumulador += ConvertFloat(scores[i].Split('|')[1]);
     	}
     	return acumulador/scores.Length;
     }
@@ -40,7 +40,7 @@ public class GameScore : MonoBehaviour
 		float acumulador = 0;
 		string[] lines = System.IO.File.ReadAllLines(@scoresFilesPath);
 		foreach (var line in lines) {
-			acumulador += int.Parse(line.Split('|')[1]);
+			acumulador += int.Parse(line.Split('|')[2]);
 		}
 		return (int) acumulador/lines.Length;
 	}
@@ -54,13 +54,16 @@ public class GameScore : MonoBehaviour
     		string[] scores = System.IO.File.ReadAllLines(@scoresFilesPath);
 	    	for (int i = 1; i < scores.Length; i++)
 	    	{	
-                bestTime = ConvertFloat(scores[bestTimePos].Split('|')[0]);  
-	    		actualTime = ConvertFloat(scores[i].Split('|')[0]); 
-	    		if (actualTime > bestTime) {
+                bestTime = ConvertFloat(scores[bestTimePos].Split('|')[1]);  
+	    		actualTime = ConvertFloat(scores[i].Split('|')[1]); 
+	    		if (actualTime < bestTime && scores[i].Split('|')[0] == "V") {
 	    			bestTimePos = i;
 	    		}
 	    	}
-	    	return ConvertFloat(scores[bestTimePos].Split('|')[0]); 
+			if (scores[bestTimePos].Split('|')[0] == "D") {
+				return 0;
+			}
+	    	return ConvertFloat(scores[bestTimePos].Split('|')[1]); 
     	} 
     	catch 
     	{
@@ -69,7 +72,6 @@ public class GameScore : MonoBehaviour
     }
 
     public static float ConvertFloat(string value) {
-    	// return float.Parse(value, CultureInfo.CreateSpecificCulture("es-ES"));
 		return float.Parse(value);
     } 
 }

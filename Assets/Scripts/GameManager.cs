@@ -8,6 +8,7 @@ using System;
 public class GameManager : MonoBehaviour
 {
     private bool gameStarted;
+    private bool savedScore;
     public Text continueText;
     public Text scoreText;
     public Text won;
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
                 DontDestroyOnLoad(GameObject.Find("TimeManager"));
                 //DontDestroyOnLoad(GameObject.Find("Foreground"));
                 foreach(var prefab in spawner.prefabs) {
-                    Debug.Log(prefab.name+"Object Pool");
+                    
                     if(GameObject.Find(prefab.name+"Object Pool")!=null){
                         Destroy(GameObject.Find(prefab.name+"Object Pool"));
                     }
@@ -118,8 +119,24 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                if (!savedScore) 
+                {
+                    GameScore.SaveScore("V|" + timeElapsed.ToString() + "|" + spawner.enemigosCreados);
+                    bestTime = GameScore.GetBestTime();
+
+                    if (timeElapsed >= bestTime)
+                    {
+                        beatBestTime = true;
+                        bestTime = timeElapsed;
+                    }
+                }
+
+                var textColor = beatBestTime ? "#FF0" : "#FFF";
+                scoreText.text = "TIEMPO: " + FormatTime(timeElapsed) + "\n<color=" + textColor + ">MEJOR TIEMPO: " + FormatTime(bestTime) + "</color>";
                 continueText.canvasRenderer.SetAlpha(0);
+                
                 won.text = " ¡¡ Felicidades lo lograste !!";
+                savedScore = true;
                 won.canvasRenderer.SetAlpha(1);
                 Time.timeScale = 0;
             }
@@ -142,21 +159,15 @@ public class GameManager : MonoBehaviour
         continueText.text = "Presione la tecla ENTER para reiniciar!";
 
         // Manejo de tiempos
-        GameScore.SaveScore(timeElapsed.ToString()+"|"+spawner.enemigosCreados);
+        GameScore.SaveScore("D|"+timeElapsed.ToString()+"|"+spawner.enemigosCreados);
         bestTime = GameScore.GetBestTime();
-        Debug.Log(bestTime);
-        if (timeElapsed >= bestTime)
-        {
-            beatBestTime = true;
-        }
-
     }
     void ResetGame()
     {
         spawner.activeBus = false;
         spawner.active = true;
         player = GameObjectUtil.Instantiate(playerPrefab, new Vector3(0, (Screen.height / PixelPerfectCamera.pixelsToUnits) / 2 + 100, 0));
-        bus = GameObjectUtil.Instantiate(busPrefab, new Vector3(0, -13, -2));
+        bus = GameObjectUtil.Instantiate(busPrefab, new Vector3(10, -40, -2));
         var playerDestroyScript = player.GetComponent<DestroyOffscreen>();
         playerDestroyScript.DestroyCallback += OnPlayerKilled;
         gameStarted = true;

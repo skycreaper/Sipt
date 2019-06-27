@@ -17,7 +17,7 @@ public class DestroyOffscreen : MonoBehaviour{
     }
     // Start is called before the first frame update
     void Start(){
-        offscreenX = (Screen.width / PixelPerfectCamera.pixelsToUnits) / 2 + offset;
+        offscreenX = (Screen.width / TiledBackground.pixelsToUnits) / 2 + offset;
     }
 
     // Update is called once per frame

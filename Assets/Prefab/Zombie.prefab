@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e303a02abada14685f3647a57e4233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 34
+  offset: 150
   contadorFuera: 0
 --- !u!114 &6136819573614076356
 MonoBehaviour:
