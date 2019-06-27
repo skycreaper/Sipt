@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     private AudioSource backgroundMusic;
 
+    private int randomTimeBus;
+
     void Awake()
     {
         floor = GameObject.Find("Foreground");
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        randomTimeBus = UnityEngine.Random.Range(5, 10);
         GameScore.InitScoresFolders();
         var floorHeight = floor.transform.localScale.y;
         var pos = floor.transform.position;
@@ -56,7 +59,7 @@ public class GameManager : MonoBehaviour
         continueText.text = "Presione la tecla ENTER para empezar!";
         hurry.enabled = true;
         hurryUp.text = "¡¡ Rapido alcanza al bus";
-        bestTime = GameScore.GetBestTime(); ;
+        bestTime = GameScore.GetBestTime();
     }
     // Update is called once per frame
     void Update()
@@ -108,7 +111,7 @@ public class GameManager : MonoBehaviour
     }
     void ManageTime()
     {
-        if (timeElapsed > 20)
+        if (timeElapsed > (30+randomTimeBus))
         {
             spawner.active = false;
             spawner.activeBus = true;
@@ -119,7 +122,7 @@ public class GameManager : MonoBehaviour
             }
             if (pressKey < 14)
             {
-                continueText.transform.position = new Vector3(0, 40, -2);
+                continueText.transform.position = new Vector3(0, 45, -2);
                 continueText.text = "<color=#FF0> Ya viene el bus presiona varias veces C para tomarlo </color>";
                 continueText.canvasRenderer.SetAlpha(blink ? 0 : 1);
             }
@@ -175,7 +178,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject busClone = GameObject.Find("Bus2(Clone)");
         if (busClone != null) {
-            GameObject.Destroy(GameObject.Find("Bus2(Clone)"));
+            GameObject.Destroy(busClone);
         }
         
         spawner.activeBus = false;

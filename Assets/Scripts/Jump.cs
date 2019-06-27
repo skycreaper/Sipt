@@ -23,8 +23,6 @@ public class Jump : MonoBehaviour{
             if (inputState.actionButton){
                 body2d.velocity = new Vector2(transform.position.x < 0 ? forwardSpeed : 0, jumpSpeed);
                 //1:57:59
-                Debug.Log("Jump (?)");
-                
                 jumpSound.clip = jumpClip;
                 jumpSound.Play();
             }
